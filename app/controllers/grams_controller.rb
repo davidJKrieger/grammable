@@ -1,14 +1,14 @@
 class GramsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create]
 
+    def index
+        @grams = Gram.all
+    end
+
     def new
         @gram = Gram.new
     end
    
-    def index
-
-    end
-
     def create
         @gram = current_user.grams.create(gram_params)
         if @gram.valid?
